@@ -12,8 +12,7 @@ def trap(array):
             print(array[i - 1])
     return water
 
-# brute force
-
+# Brute force
 def trap_water(array):
     res = 0
 
@@ -30,8 +29,28 @@ def trap_water(array):
 
     return res
 
+# Using two pointers
+def max_water(arr):
+    left = 1
+    right = len(arr) - 2
+    lMax = arr[left - 1]
+    rMax = arr[right + 1]
+    res = 0
+
+    while left <= right:      
+        if rMax <= lMax:
+            res += max(0, rMax - arr[right])
+            rMax = max(rMax, arr[right])
+            right -= 1
+        else:
+            res += max(0, lMax - arr[left])
+            lMax = max(lMax, arr[left])
+            left += 1
+    
+    return res
+
 def main():
-    print(trap_water(array))
+    print(max_water(array))
 
 
 if __name__ == "__main__":
