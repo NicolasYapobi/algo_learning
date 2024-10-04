@@ -12,8 +12,26 @@ def trap(array):
             print(array[i - 1])
     return water
 
+# brute force
+
+def trap_water(array):
+    res = 0
+
+    for i in range(1, len(array) - 1): #[0, 1, 0, 4, 0, 2]
+        print("loop: ", i)
+        for j in range(i): # i = 1 j = 0
+            left = max(left, array[j]) # array[j] = 3
+        
+        right = array[i] # array[i] = 0
+        for j in range(i + 1, len(array)): #[1, 0, 4, 0, 2]
+            right = max(right, array[j])
+        
+        res += (min(left, right) - array[i])
+
+    return res
+
 def main():
-    print(trap(array))
+    print(trap_water(array))
 
 
 if __name__ == "__main__":
